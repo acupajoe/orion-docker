@@ -5,9 +5,9 @@ ARG sha
 ARG mapbox_api_token
 
 RUN apk update
-RUN apk add wget unzip
+RUN apk add curl unzip
 
-RUN wget -O orion-web.zip https://github.com/LINKIWI/orion-web/archive/$sha.zip
+RUN wget -L -o orion-web.zip https://github.com/LINKIWI/orion-web/archive/$sha.zip
 RUN unzip orion-web.zip
 WORKDIR "orion-web-$sha"
 
