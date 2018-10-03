@@ -19,6 +19,6 @@ ENV MAPBOX_API_TOKEN $mapbox_api_token
 
 RUN npm run build
 
-EXPOSE 80
+EXPOSE 3001
 
-CMD ["static", "dist", "-a", "0.0.0.0", "-p", "80"]
+CMD ["static", "dist", "-a", "0.0.0.0", "-p", "3001"]

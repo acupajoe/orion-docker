@@ -26,6 +26,6 @@ ENV DATABASE_USER $database_user
 ENV DATABASE_PASSWORD $database_password
 ENV PYTHONPATH "/orion-server-$sha"
 
-EXPOSE 80
+EXPOSE 3000
 
-CMD make init-db && gunicorn --bind 0.0.0.0:80 -w 4 orion.server:app
+CMD make init-db && gunicorn --bind 0.0.0.0:3000 -w 4 orion.server:app
