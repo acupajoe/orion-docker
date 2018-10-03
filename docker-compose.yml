@@ -26,8 +26,6 @@ services:
         database_password: orion
     depends_on:
       - db
-    networks:
-      - traefik
     labels:
       - "traefik.enable=true"
       - "traefik.port=3000"
@@ -42,7 +40,7 @@ services:
       args:
         sha: 8c18dce19a2199c4c53e1145881d362a05018cd5
         mapbox_api_token: ${MAPBOX_API_TOKEN}
-        orion_server_url: ${SERVER_HOST}
+        orion_server_url: https://${SERVER_HOST}
     depends_on:
       - server
     networks:
