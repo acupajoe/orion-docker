@@ -4,12 +4,17 @@ services:
   db:
     image: mysql:5.7
     restart: always
+    networks:
+      - orion
     environment:
       - MYSQL_ROOT_PASSWORD=orion
       - MYSQL_DATABASE=orion
 
   server:
     restart: always
+    networks:
+      - orion
+      - traefik
     build:
       context: orion-server
       args:
@@ -27,7 +32,7 @@ services:
       - "traefik.enable=true"
       - "traefik.port=3000"
       - "traefik.docker.network=traefik"
-      - "traefik.frontend.rule=Host:${HOST};PathPrefix:/api"
+      - "traefik.frontend.rule=Host:${SERVER_HOST};PathPrefix:/api"
       - "traefik.frontend.auth.basic=${BASIC_AUTH}"
 
   web:
@@ -37,6 +42,7 @@ services:
       args:
         sha: 8c18dce19a2199c4c53e1145881d362a05018cd5
         mapbox_api_token: ${MAPBOX_API_TOKEN}
+        orion_server_url: ${SERVER_HOST}
     depends_on:
       - server
     networks:
@@ -49,5 +55,6 @@ services:
       - "traefik.frontend.auth.basic=${BASIC_AUTH}"
 
 networks:
+  orion: {}
   traefik:
     external: true

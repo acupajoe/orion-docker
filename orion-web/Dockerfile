@@ -3,6 +3,7 @@ MAINTAINER Kevin Lin <developer@kevinlin.info>
 
 ARG sha
 ARG mapbox_api_token
+ARG orion_server_url
 
 RUN apk update
 RUN apk add curl unzip
@@ -16,6 +17,7 @@ RUN npm install -g node-static
 
 ENV NODE_ENV production
 ENV MAPBOX_API_TOKEN $mapbox_api_token
+ENV ORION_SERVER_URL $orion_server_url
 
 RUN npm run build
 
