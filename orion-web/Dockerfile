@@ -3,7 +3,7 @@ MAINTAINER Kevin Lin <developer@kevinlin.info>
 
 ARG sha
 ARG mapbox_api_token
-ARG orion_server_url
+ARG orion_server_url=/api
 
 RUN apk update
 RUN apk add curl unzip
